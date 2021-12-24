@@ -1,0 +1,38 @@
+[package]
+name = "clash-royale-iloitus"
+version = "0.1.0"
+edition = "2021"
+authors = ["Luukas Pörtfors <lajp@iki.fi>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.serenity]
+version = "0.10.9"
+default_features = false
+features = ["client", "gateway", "rustls_backend", "model", "framework", "standard_framework", "unstable_discord_api"]
+
+[dependencies.tokio]
+version = "1.13"
+features = ["macros", "rt-multi-thread", "signal"]
+
+[dependencies.openssl-sys]
+version = "0.9.7"
+features = ["vendored"]
+
+[dependencies.libsqlite3-sys]
+version = "0.22.2"
+features = ["bundled"]
+
+[dependencies.diesel]
+version = "1.4.8"
+features = ["sqlite", "r2d2"]
+
+[dependencies]
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+reqwest = "0.11"
+dotenv = "0.15"
+futures = "0.3"
+clokwerk = "0.3"
+serde_json = "1.0"
+chrono = "0.4"
