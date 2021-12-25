@@ -6,6 +6,8 @@ use tracing::info;
 
 
 pub async fn update_everything(http: &Http, db: Database) -> Result<(), anyhow::Error> {
+    info!("Starting full-update");
+    let startime = std::time::Instant::now();
     let boring_chests = vec!["Silver Chest", "Golden Chest", "Gold Crate", "Plentiful Gold Crate"];
     dotenv::dotenv().ok();
     let notfication_channel_id = env::var("NOTIFICATION_CHANNEL_ID").expect("NOTIFICATION_CHANNEL_ID not defined in .env")
@@ -34,5 +36,6 @@ pub async fn update_everything(http: &Http, db: Database) -> Result<(), anyhow::
         }
         db.update_player(player).await?;
     }
+    info!("Finished update in {} ms", startime.elapsed().as_millis());
     Ok(())
 }
