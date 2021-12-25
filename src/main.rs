@@ -149,10 +149,13 @@ async fn main() {
         }
     });
 
+    let thread_handle = scheduler.watch_thread(std::time::Duration::from_millis(1000));
+
     tokio::spawn(async move {
         tokio::signal::ctrl_c()
             .await
             .expect("Could not register ctrl-c handler");
+        thread_handle.stop();
         shard_manager.lock().await.shutdown_all().await;
     });
 
