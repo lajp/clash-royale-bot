@@ -22,7 +22,6 @@ use serenity::model::interactions::application_command::{
 use serenity::model::interactions::{Interaction, InteractionResponseType};
 use serenity::prelude::*;
 use tracing::{error, info};
-use tracing_subscriber::FmtSubscriber;
 use clokwerk::{Scheduler, TimeUnits};
 
 use database::*;
@@ -102,7 +101,7 @@ struct General;
 async fn main() {
     dotenv::dotenv().expect(".env required");
 
-    FmtSubscriber::builder().init();
+    tracing_subscriber::fmt::init();
 
     let database = Database::new().await;
 
