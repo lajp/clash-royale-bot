@@ -21,6 +21,7 @@ pub async fn get_player_chests(id: &str) -> Result<Vec<Chest>, anyhow::Error> {
     dotenv::dotenv().ok();
     let id = &id.replace('#', "%23");
     let token = env::var("CLASH_ROYALE_TOKEN").expect("Expected CLASH_ROYALE_TOKEN token");
+    let token = format!("Bearer {}", token);
     let mut headers = HeaderMap::new();
     headers.insert(AUTHORIZATION, token.parse()?);
     let url = format!("https://api.clashroyale.com/v1/players/{}/upcomingchests", id);
@@ -43,6 +44,7 @@ pub async fn get_player_battles(id: &str) -> Result<Vec<Battle>, anyhow::Error> 
     dotenv::dotenv().ok();
     let id = &id.replace('#', "%23");
     let token = env::var("CLASH_ROYALE_TOKEN").expect("Expected CLASH_ROYALE_TOKEN token");
+    let token = format!("Bearer {}", token);
     let mut headers = HeaderMap::new();
     headers.insert(AUTHORIZATION, token.parse()?);
     let url = format!("https://api.clashroyale.com/v1/players/{}/battlelog", id);
