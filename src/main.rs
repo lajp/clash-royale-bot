@@ -145,10 +145,10 @@ async fn main() {
     let mut scheduler = Scheduler::with_tz(chrono::Local);
 
     scheduler.every(30.second()).run(move || {
-        runtime.block_on(update::update_everything(&http, database.clone()));
+        if let Err(e) = runtime.block_on(update::update_everything(&http, database.clone())) {
+            error!("Update failed!: {}", e);
+        }
     });
-
-    let thread_handle = scheduler.watch_thread(std::time::Duration::from_millis(1000));
 
     tokio::spawn(async move {
         tokio::signal::ctrl_c()
