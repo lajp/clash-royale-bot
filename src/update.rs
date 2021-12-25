@@ -9,7 +9,6 @@ pub async fn update_everything(http: &Http, db: Database) -> Result<(), anyhow::
     info!("Starting full-update");
     let startime = std::time::Instant::now();
     let boring_chests = vec!["Silver Chest", "Golden Chest", "Gold Crate", "Plentiful Gold Crate"];
-    dotenv::dotenv().ok();
     let notfication_channel_id = env::var("NOTIFICATION_CHANNEL_ID").expect("NOTIFICATION_CHANNEL_ID not defined in .env")
         .parse::<u64>().expect("Invalid NOTIFICATION_CHANNEL_ID");
     let notfication_channel = http.get_channel(notfication_channel_id).await?;

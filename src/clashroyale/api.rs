@@ -18,7 +18,6 @@ pub struct Battle {
 }
 
 pub async fn get_player_chests(id: &str) -> Result<Vec<Chest>, anyhow::Error> {
-    dotenv::dotenv().ok();
     let id = &id.replace('#', "%23");
     let token = env::var("CLASH_ROYALE_TOKEN").expect("Expected CLASH_ROYALE_TOKEN token");
     let token = format!("Bearer {}", token);
@@ -41,7 +40,6 @@ pub async fn get_player_chests(id: &str) -> Result<Vec<Chest>, anyhow::Error> {
 }
 
 pub async fn get_player_battles(id: &str) -> Result<Vec<Battle>, anyhow::Error> {
-    dotenv::dotenv().ok();
     let id = &id.replace('#', "%23");
     let token = env::var("CLASH_ROYALE_TOKEN").expect("Expected CLASH_ROYALE_TOKEN token");
     let token = format!("Bearer {}", token);
