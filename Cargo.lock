@@ -134,7 +134,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "clash-royale-iloitus"
+name = "clash-royale-bot"
 version = "0.1.0"
 dependencies = [
  "anyhow",

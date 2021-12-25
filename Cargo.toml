@@ -1,5 +1,5 @@
 [package]
-name = "clash-royale-iloitus"
+name = "clash-royale-bot"
 version = "0.1.0"
 edition = "2021"
 authors = ["Luukas Pörtfors <lajp@iki.fi>"]
