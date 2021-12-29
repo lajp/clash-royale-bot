@@ -143,6 +143,7 @@ dependencies = [
  "diesel",
  "dotenv",
  "futures",
+ "lazy_static",
  "libsqlite3-sys",
  "openssl-sys",
  "reqwest",
