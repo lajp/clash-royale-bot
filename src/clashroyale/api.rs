@@ -59,7 +59,10 @@ pub async fn get_player_battles(id: &str) -> Result<Vec<Battle>, anyhow::Error> 
             let opponent_object = battle["opponent"][0].as_object().ok_or(anyhow::anyhow!("Unknown API error"))?;
             let player = battle["team"][0].as_object().ok_or(anyhow::anyhow!("Unknown API error"))?;
             let opponent = opponent_object["name"].as_str().ok_or(anyhow::anyhow!("Unknown API error"))?.to_string();
-            let opponent_crowns = opponent_object["crowns"].as_i64().ok_or(anyhow::anyhow!("Unknown API error"))?;
+            let mut opponent_crowns = 0;
+            if opponent_object.contains_key("crowns") {
+                opponent_crowns = opponent_object["crowns"].as_i64().unwrap_or(-1);
+            }
             let mut victory = false;
             let mut crowns = 0;
             if player.contains_key("crowns") {
